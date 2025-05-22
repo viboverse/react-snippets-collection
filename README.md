@@ -5,7 +5,7 @@ The goal is to create a reference library of common solutions and design approac
 
 ---
 
-## 🔧 Included Patterns
+<!-- ## 🔧 Included Patterns
 
 | File Name                           | Description                                                                                              |
 | ----------------------------------- | -------------------------------------------------------------------------------------------------------- |
@@ -16,7 +16,7 @@ The goal is to create a reference library of common solutions and design approac
 | `context-api-usage.jsx`             | A simple example of using React’s Context API for state sharing across components.                       |
 | `useReducer-pattern.jsx`            | Demonstrates state management using `useReducer` hook, great for handling complex component logic.       |
 
----
+--- -->
 
 ## 📌 Notes
 
