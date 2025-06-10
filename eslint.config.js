@@ -23,7 +23,7 @@ export default [
       react: pluginReact,
     },
     rules: {
-      "no-unused-vars": "error",
+      "no-unused-vars": "warn",
       semi: ["error", "always"],
       "no-console": "warn",
       // 🚨 THIS disables the React-in-scope error

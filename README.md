@@ -5,18 +5,26 @@ The goal is to create a reference library of common solutions and design approac
 
 ---
 
-<!-- ## 🔧 Included Patterns
+## 🔧 Included Patterns
 
-| File Name                           | Description                                                                                              |
-| ----------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `form-data-to-object.jsx`           | Converts HTML form input into a structured JavaScript object — useful for form handling.                 |
-| `component-composition-pattern.jsx` | Demonstrates advanced component composition for better reusability and flexibility.                      |
-| `portal-with-imperative-handle.jsx` | Combines `ReactDOM.createPortal` with `useImperativeHandle` to expose functions to the parent component. |
-| `input-with-ref.jsx`                | Shows how to use `useRef` to control focus and access input values directly.                             |
-| `context-api-usage.jsx`             | A simple example of using React’s Context API for state sharing across components.                       |
-| `useReducer-pattern.jsx`            | Demonstrates state management using `useReducer` hook, great for handling complex component logic.       |
+| File Name                            | Description                                                                                              |
+| ------------------------------------ | -------------------------------------------------------------------------------------------------------- |
+| `authentication.jsx`                 |                                                                                                          |
+| `cart-logic.jsx`                     |                                                                                                          |
+| `component-composition-pattern.jsx`  | Demonstrates advanced component composition for better reusability and flexibility.                      |
+| `context-api-usage.jsx`              | A simple example of using React’s Context API for state sharing across components.                       |
+| `fetch-data-functions.jsx`           |                                                                                                          |
+| `form-data-to-object.jsx`            | Converts HTML form input into a structured JavaScript object — useful for form handling.                 |
+| `input-with-ref.jsx`                 | Shows how to use `useRef` to control focus and access input values directly.                             |
+| `portal-with-imperative-handle.jsx`  | Combines `ReactDOM.createPortal` with `useImperativeHandle` to expose functions to the parent component. |
+| `react-query.jsx`                    |                                                                                                          |
+| `react-router-part-b.jsx`            |                                                                                                          |
+| `react-router.jsx`                   |                                                                                                          |
+| `redux.jsx`                          |                                                                                                          |
+| `side-effects-cleanup-functions.jsx` |                                                                                                          |
+| `useReducer-pattern.jsx`             | Demonstrates state management using `useReducer` hook, great for handling complex component logic.       |
 
---- -->
+---
 
 ## 📌 Notes
 
