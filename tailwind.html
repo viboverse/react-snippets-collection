@@ -1,0 +1,243 @@
+/* Tailwind CSS Cheatsheet ====================== 1. Styling a Button
+-------------------
+<button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">
+  Click Me
+</button>
+
+2. Sizing and Spacing ---------------------
+<div class="w-64 h-32 m-4 p-2">Sized and spaced box</div>
+
+3. Text Sizing --------------
+<p class="text-xs">Extra Small</p>
+<p class="text-lg">Large</p>
+<p class="text-2xl font-bold">2XL Bold</p>
+
+4. Customizing Colors ---------------------
+<div class="bg-purple-500 text-yellow-200">Custom Colors</div>
+
+5. Styling an Alert -------------------
+<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+  Alert!
+</div>
+
+6. Adding Spacing -----------------
+<div class="space-y-4">
+  <p>Paragraph 1</p>
+  <p>Paragraph 2</p>
+</div>
+
+7. Adding Dividers ------------------
+<div class="divide-y divide-gray-300">
+  <div>Item 1</div>
+  <div>Item 2</div>
+</div>
+
+8. Styling Pseudo-Classes -------------------------
+<button class="bg-green-500 hover:bg-green-700 focus:ring-4">
+  Hover and Focus
+</button>
+
+9. Styling Form State ---------------------
+<input
+  class="border-2 border-gray-300 focus:border-blue-500 invalid:border-red-500"
+  required
+/>
+
+10. Further Form Improvements -----------------------------
+<input
+  class="block w-1/2 rounded border-2 p-2 focus:border-purple-500 disabled:bg-gray-100"
+  disabled
+/>
+
+11. Peer Modifiers ------------------
+<input type="email" class="peer border-2" required />
+<p class="invisible peer-invalid:visible text-red-600">Invalid email!</p>
+
+12. Group Modifiers -------------------
+<div class="group hover:bg-gray-200 p-4">
+  <button class="group-hover:bg-blue-500">Group Hover Button</button>
+</div>
+
+13. Before and After Pseudo-Elements ------------------------------------
+<!-- Basic before/after -->
+<div
+  class="before:content-['Before'] after:content-['After'] before:mr-2 after:ml-2 before:bg-red-50 after:bg-blue-50"
+>
+  Content
+</div>
+
+<!-- Using attributes for content -->
+<div
+  before="Hello"
+  class="before:content-[attr(before)] before:mr-2 before:text-red-500"
+>
+  Content
+</div>
+
+14. Dark Mode ------------------
+<!-- 1. Configure in tailwind.config.js: darkMode: 'class' or 'media' -->
+
+<!-- 2. Apply styles with the dark: variant -->
+<div class="bg-white dark:bg-gray-800">
+  <p class="text-gray-900 dark:text-white">This text changes in dark mode.</p>
+</div>
+
+<!-- 3. If using 'class', toggle with JS -->
+<!-- document.documentElement.classList.add('dark'); -->
+
+15. Responsive Breakpoints ------------------
+<!--
+Out of the box, Tailwind comes with the following breakpoints.
+
+Size	Minimum Width
+sm	640px
+md	768px
+lg	1024px
+xl	1280px
+2xl	1536px
+
+Mobile First
+If you don’t use a variant to define what screen size the style should apply to, then it’ll start from the smallest. You can only override styles to apply to wider viewports.
+-->
+<div class="bg-red-500 p-4 text-white md:bg-green-500 lg:bg-blue-500">
+  This div is red on small screens, green on medium screens, and blue on large
+  screens.
+</div>
+
+16. Columns ------------------
+<!--
+The columns CSS shorthand property—and the associated Tailwind class, make it easy to masonry-like layouts.
+
+We can use object-fit and a max-h-* to have a little bit more control over the layout.
+
+We can also specify the desired width of the columns and then let CSS figure out the rest.
+-->
+
+<!-- Basic Columns -->
+<div class="mx-auto my-10 max-w-[500px] columns-3 space-y-4">
+  <img
+    class="max-h-32 w-full object-cover"
+    src="https://picsum.photos/200/300"
+  />
+  <img
+    class="max-h-32 w-full object-cover"
+    src="https://picsum.photos/200/300"
+  />
+  <img
+    class="max-h-32 w-full object-cover"
+    src="https://picsum.photos/200/300"
+  />
+  <img
+    class="max-h-32 w-full object-cover"
+    src="https://picsum.photos/200/300"
+  />
+</div>
+
+17. Preventing Column Breaks (break-inside-avoid) ------------------
+<!--
+The `break-inside-avoid` utility prevents an element from breaking across multiple columns. 
+This is useful for keeping content like cards or articles together.
+-->
+<div class="columns-3 space-y-4 p-4">
+  <div
+    class="mb-6 break-inside-avoid-column rounded border-2 border-slate-100 bg-slate-50 p-4 shadow-md"
+  >
+    <h3 class="font-semibold text-purple-500">Morning Brew</h3>
+    <p>Starting the day with a fresh cup of coffee and a plan.</p>
+  </div>
+  <div
+    class="mb-6 break-inside-avoid-column rounded border-2 border-slate-100 bg-slate-50 p-4 shadow-md"
+  >
+    <h3 class="font-semibold text-purple-500">Midday Sprint</h3>
+    <p>A focused burst of productivity, tackling the most important tasks.</p>
+  </div>
+  <div
+    class="mb-6 break-inside-avoid-column rounded border-2 border-slate-100 bg-slate-50 p-4 shadow-md"
+  >
+    <h3 class="font-semibold text-purple-500">Evening Patrol</h3>
+    <p>
+      A silent glide through the city's shadows, keeping watch as night falls.
+    </p>
+  </div>
+</div>
+
+18. CSS Grid Layout ------------------
+<!--
+CSS Grid is a powerful layout system for creating two-dimensional layouts.
+You can define rows and columns with precise control.
+The `fr` unit represents a fraction of the available space in the grid container.
+`col-span-2` makes an element span across two columns.
+-->
+<main
+  class="grid h-screen w-screen grid-rows-[1fr_12fr_1fr] grid-cols-[1fr_4fr] bg-gray-500"
+>
+  <header class="col-span-2 bg-red-500">Header</header>
+
+  <nav class="bg-blue-400">Sidebar</nav>
+
+  <section class="bg-yellow-300">main</section>
+
+  <footer class="col-span-2 bg-green-400">Footer</footer>
+</main>
+
+19. Flexbox ------------------
+<!--
+Flexbox is a layout model in CSS that’s designed to distribute space along a single axis, either horizontally or vertically. It’s incredibly useful for building complex layout structures with a more predictable way than traditional models, especially when the sizes of your items are unknown or dynamic.
+
+Cross Axis (Align)
+Main Axis (Justify)
+
+Justify: Controls alignment along the main axis.
+Align: Controls alignment along the cross axis.
+Place: A shorthand for controlling both axes.
+
+Main Axis: The primary direction of the flex container (row or column).
+Cross Axis: The axis perpendicular to the main axis.
+-->
+//what to remeber// justify-center and items-center
+<!-- Justify Content (Main Axis) -->
+<div class="flex justify-around bg-gray-200 p-4 mb-4">
+  <div class="bg-blue-500 p-2 text-white">Item 1</div>
+  <div class="bg-green-500 p-2 text-white">Item 2</div>
+  <div class="bg-red-500 p-2 text-white">Item 3</div>
+</div>
+
+<!-- Align Items (Cross Axis) -->
+<div class="flex items-center h-32 bg-gray-200 p-4 mb-4">
+  <div class="bg-blue-500 p-2 text-white">Item 1</div>
+  <div class="bg-green-500 p-2 text-white">Item 2</div>
+  <div class="bg-red-500 p-2 text-white">Item 3</div>
+</div>
+
+20. User Select ------------------
+<!--
+The `select-*` utilities control whether a user can select text.
+`select-all`: A single click selects all the text in the element.
+`select-none`: Prevents the user from selecting the text.
+`select-text`: Default browser behavior.
+-->
+
+<!-- Default Selection -->
+<div class="mb-4">
+  <p class="font-bold">Workflow ID</p>
+  <p>550e8400-e29b-41d4-a716-446655440000</p>
+  <p class="text-sm text-gray-500">
+    Try selecting the ID above. It can be annoying.
+  </p>
+</div>
+
+<!-- Select All -->
+<div class="mb-4">
+  <p class="font-bold">Workflow ID (with select-all)</p>
+  <p class="select-all">550e8400-e29b-41d4-a716-446655440000</p>
+  <p class="text-sm text-gray-500">One click will select the whole ID.</p>
+</div>
+
+<!-- Select None -->
+<div class="mb-4">
+  <p class="font-bold">Workflow ID (with select-none)</p>
+  <p class="select-none">550e8400-e29b-41d4-a716-446655440000</p>
+  <p class="text-sm text-gray-500">You can't select this ID.</p>
+</div>
+
+*/
