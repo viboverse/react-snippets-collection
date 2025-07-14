@@ -72,18 +72,18 @@ function MyMutationComponent() {
 // (Assumes 'eventId' is the ID of the item being updated, available in your component's scope)
 // (Assumes 'queryClient' is initialized via useQueryClient())
 
-Example of how you might define updateEventOnServer and get eventId
-async function updateEventOnServer(eventPayload) { // eventPayload might be { id, event: formData }
+// Example of how you might define updateEventOnServer and get eventId
+async function updateEventOnServer(eventPayload) {
+  // eventPayload might be { id, event: formData }
   const response = await fetch(`/api/events/${eventPayload.id}`, {
-    method: 'PUT',
+    method: "PUT",
     body: JSON.stringify(eventPayload.event),
-    headers: { 'Content-Type': 'application/json' },
+    headers: { "Content-Type": "application/json" },
   });
-  if (!response.ok) throw new Error('Failed to update event');
+  if (!response.ok) throw new Error("Failed to update event");
   return response.json();
 }
-const eventId = 'some-event-id'; // This would be dynamic in a real component
-
+const eventId = "some-event-id"; // This would be dynamic in a real component
 
 const { mutate: updateEventOptimistically } = useMutation({
   mutationFn: updateEventOnServer, // Your actual function to call the API
@@ -136,21 +136,20 @@ const { mutate: updateEventOptimistically } = useMutation({
   // specifically on successful mutation.
   // onSuccess: (dataFromMutationFn, variablesPassedToMutate, context) => {
   //   console.log("Mutation successful!", dataFromMutationFn);
-    // Navigate, show success notification, etc.
-    // Note: Invalidation is often handled in onSettled to cover both success/error.
+  // Navigate, show success notification, etc.
+  // Note: Invalidation is often handled in onSettled to cover both success/error.
   // },
 });
 
 // How to use it in your component:
 function MyComponent() {
   const queryClient = useQueryClient(); // Make sure to get the client
-  const eventId = 'some-dynamic-id'; // Get this from props, params, etc.
+  const eventId = "some-dynamic-id"; // Get this from props, params, etc.
 
   const handleFormSubmit = (formData) => {
     updateEventOptimistically({ id: eventId, event: formData });
   };
-
- }
+}
 
 // --- Key Differences (Simplified) ---
 // - useQuery:   Reads data. Caches data. Runs on component load.
