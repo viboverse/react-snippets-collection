@@ -126,3 +126,133 @@ function App() {
 
 // navigation.state can be: "idle" | "loading" | "submitting"
 // navigation.location gives you the location being navigated to
+
+// 8. Use useRouteError to handle errors from loaders and actions
+import { useRouteError } from "react-router-dom";
+
+// Create an error boundary component:
+function ErrorPage() {
+  const error = useRouteError();
+  console.error(error);
+
+  return (
+    <div id="error-page">
+      <h1>Oops!</h1>
+      <p>Sorry, an unexpected error has occurred.</p>
+      <p>
+        <i>{error.statusText || error.message}</i>
+      </p>
+    </div>
+  );
+}
+
+// Example loader that might throw an error:
+async function userLoader({ params }) {
+  const response = await fetch(`/api/users/${params.userId}`);
+  if (!response.ok) {
+    // This error will be caught by the error boundary
+    throw new Response("User not found", {
+      status: 404,
+      statusText: "Not Found",
+    });
+  }
+  return response.json();
+}
+
+// Add errorElement to route to catch loader errors:
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <MainLayout />,
+    errorElement: <ErrorPage />, // Catches all errors in this route tree
+    children: [
+      {
+        path: "users/:userId",
+        element: <UserPage />,
+        loader: userLoader,
+        errorElement: <UserErrorPage />, // Catches errors specific to this route
+      },
+    ],
+  },
+]);
+// The error object contains:
+// - error.status (if thrown with Response)
+// - error.statusText (if thrown with Response)
+// - error.message (for regular Error objects)
+// - error.data (if thrown with Response and JSON data)
+
+// 9. Use action to handle form submissions
+// Actions handle form submissions and data mutations
+// They run when a form is submitted and can handle POST, PUT, DELETE, etc.
+// Actions execute BEFORE navigation happens, allowing you to validate/process data
+
+import { Form, redirect } from "react-router-dom";
+
+// Use Form component for submission (not regular <form>):
+import { Form, useActionData } from "react-router-dom";
+
+function CreateUserPage() {
+  const actionData = useActionData(); // Gets data returned from action
+
+  return (
+    <Form method="post">
+      <div>
+        <label>Name:</label>
+        <input type="text" name="name" required />
+      </div>
+      <div>
+        <label>Email:</label>
+        <input type="email" name="email" required />
+      </div>
+      <button type="submit">Create User</button>
+
+      {actionData?.error && <p style={{ color: "red" }}>{actionData.error}</p>}
+    </Form>
+  );
+}
+
+// Define an action function:
+async function createUserAction({ request }) {
+  const formData = await request.formData();
+  // Each input needs to have name attribute
+  const userData = {
+    name: formData.get("name"),
+    email: formData.get("email"),
+  };
+
+  // Validate data
+  if (!userData.name || !userData.email) {
+    return { error: "Name and email are required" };
+  }
+
+  // Submit to API
+  const response = await fetch("/api/users", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(userData),
+  });
+
+  if (!response.ok) {
+    throw new Response("Failed to create user", { status: 500 });
+  }
+
+  // Redirect after successful submission
+  return redirect("/users");
+}
+
+// Add action to route:
+const router = createBrowserRouter([
+  {
+    path: "/users/new",
+    element: <CreateUserPage />,
+    action: createUserAction,
+  },
+]);
+
+// Key points about actions:
+// - Use Form component (from react-router-dom) instead of regular <form>
+// - Actions receive request object with formData
+// - Actions can return data that components access via useActionData
+// - Actions can redirect using redirect() function
+// - Actions run before navigation, perfect for data validation/submission
+// - Form submissions automatically trigger the action on the current route
