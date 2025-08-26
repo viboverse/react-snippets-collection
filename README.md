@@ -22,6 +22,8 @@ This is where I keep useful React patterns, components, and hooks I'm learning a
 
 ---
 
+# Test
+
 ## Why This Repo?
 
 Basically, it's a space for me to explore React, save cool snippets, and track my learning. It's not for production, just for my own understanding and reference.
