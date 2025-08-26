@@ -1,3 +1,13 @@
+# React Patterns & Snippets
+
+Small, focused React examples and patterns for quick learning and reference.
+
+---
+
+## Contributing
+
+- This is a personal study repo — add snippets or improvements as you learn.
+
 # My React Learning & Pattern Sandbox
 
 This is where I keep useful React patterns, components, and hooks I'm learning and experimenting with. Think of it as my personal reference library for React solutions and design ideas.
